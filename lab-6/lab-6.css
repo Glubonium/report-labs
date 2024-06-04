@@ -1,0 +1,134 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EFF9FF; 
+    margin: 10px;
+    border: 2px solid #000000; 
+    border-radius: 10px; 
+    color: #fff; 
+    padding: 10px;
+    font-family: 'Times';
+}
+  
+.upper-header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.lower-header  {
+    width: auto;
+    justify-content: center;
+}
+  
+button {
+    margin-right: 10px;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.photo-section, .text-section {
+    flex: 1;
+    text-align: center; 
+}
+
+.photo-section{
+    flex: 0 0 15%;
+    margin-top: auto;
+}
+  
+.text-section {
+    flex: 0 0 70%;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.buttons button.right {
+    margin-left: 150px;
+    width: fit-content;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.subsection {
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.subsection h3 {
+    color: #444;
+    cursor: pointer;
+    margin: 0;
+    padding: 10px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.subsection h3:hover {
+    background-color: #d4d4d4;
+}
+
+pre {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+pre code {
+    color: #d63384;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.subsection-toggle {
+    cursor: pointer;
+}

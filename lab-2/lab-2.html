@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №2</title>
+    <link rel="stylesheet" href="lab-2.css">
+    <script src="lab-2.js" defer></script>
+</head>
+<body>
+    <div class="upper-header">
+        <div class="text-section">
+        <h3><p>ЗВІТИ ЛАБОРАТОРНИХ РОБІТ</p>
+        <p>З ДИСЦИПЛІНИ “WEB-ОРІЄНТОВАНІ ТЕХНОЛОГІЇ.</p>
+        <p>ОСНОВИ FRONTEND та BACKEND РОЗРОБОК”</p>
+        <p>Студента гр. ІО-12 Загороднього Владислава Володимировича</p></h3>
+        </div>
+        <div class="photo-section">
+            <img src="../photo_stud.jpg" alt="First Photo">
+        </div>
+    </div>
+
+    <div class="lower-header">
+        <nav id="LabsButtons">
+            <button onclick="location.href='../lab-1/lab-1.html'">Lab 1</button>
+            <button onclick="location.href='../lab-2/lab-2.html'">Lab 2</button>
+            <button onclick="location.href='../lab-3/lab-3.html'">Lab 3</button>
+            <button onclick="location.href='../lab-4/lab-4.html'">Lab 4</button>
+            <button onclick="location.href='../lab-5/lab-5.html'">Lab 5</button>
+            <button onclick="">Lab 6</button>
+            <button onclick="">Lab 7</button>
+            <button onclick="">Lab 8</button>
+            <button onclick="">Lab 9</button>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1>Лабораторна робота №2</h1>
+        <div class="subsection-toggle" data-subsection="subsection1">
+            <h3>Тема, мета</h3>
+        </div>
+        <div id="subsection1" class="subsection hidden">
+            <p>Тема: Вивчення основ CSS і селекторів.</p>
+            <p>Мета: Навчитись використовувати різні типи селекторів і застосовувати CSS стилі.</p>
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection2">
+            <h3>Способи підключення стилів</h3>
+        </div>
+        <div id="subsection2" class="subsection hidden">
+            <p>Стилі можуть бути підключені трьома способами: inline-стилі, внутрішні стилі в секції &lt;style&gt;, та зовнішні стилі через &lt;link&gt;.</p>
+            <pre><code>&lt;!-- Inline стиль --&gt;
+&lt;h1 style="color: red;"&gt;Заголовок&lt;/h1&gt;
+
+&lt;!-- Внутрішній стиль --&gt;
+&lt;style&gt;
+  h1 { color: red; }
+&lt;/style&gt;
+
+&lt;!-- Зовнішній стиль --&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;
+            </code></pre>
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection3">
+            <h3>Селектори тегу</h3>
+        </div>
+        <div id="subsection3" class="subsection hidden">
+            <p>Приклад використання селекторів тегу в нашому додатку:</p>
+            <pre><code>&lt;h1&gt;Планувальник задач&lt;/h1&gt;
+&lt;h2&gt;Таблиця Завдань&lt;/h2&gt;
+
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+            </code></pre>
+            <img src="./assets/tag-selector.png" alt="Приклад селекторів тегу">
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection4">
+            <h3>Селектори класу</h3>
+        </div>
+        <div id="subsection4" class="subsection hidden">
+            <p>Приклад використання селекторів класу в нашому додатку:</p>
+            <pre><code>&lt;div class="container"&gt;
+  ...
+&lt;/div&gt;
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+            </code></pre>
+            <img src="./assets/class-selector.png" alt="Приклад селекторів класу">
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection5">
+            <h3>Селектори ідентифікаторів</h3>
+        </div>
+        <div id="subsection5" class="subsection hidden">
+            <p>Приклад використання селекторів ідентифікаторів в нашому додатку:</p>
+            <pre><code>&lt;input type="text" id="new-task" placeholder="Додати нове завдання"&gt;
+
+#new-task {
+    flex: 1;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease;
+}
+            </code></pre>
+            <img src="./assets/id-selector.png" alt="Приклад селекторів ідентифікаторів">
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection6">
+            <h3>Інші селектори</h3>
+        </div>
+        <div id="subsection6" class="subsection hidden">
+            <p>Приклад використання інших селекторів в нашому додатку:</p>
+            <pre><code>.task-table td:last-child {
+    min-width: 40%;
+}
+
+.task-table .button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.adaptive-flex .task-item .task-info span {
+    flex: 1;
+    margin-bottom: 5px;
+    white-space: normal;
+    word-break: break-word;
+}
+            </code></pre>
+            <img src="./assets/other-selectors.png" alt="Приклад інших селекторів">
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection7">
+            <h3>CSS: Шрифти Текст Таблиці Фон Контур Списки СSS</h3>
+        </div>
+        <div id="subsection7" class="subsection hidden">
+            <p>Приклад використання CSS властивостей:</p>
+            <pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+            </code></pre>
+            <img src="./assets/properties-styling.png" alt="Приклад CSS властивостей">
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection8">
+            <h3>Висновки до ЛР №2</h3>
+        </div>
+        <div id="subsection8" class="subsection hidden">
+            <p>У цій лабораторній роботі ми навчилися використовувати різні типи селекторів у CSS, а також застосовувати стилі до HTML елементів для покращення вигляду нашого веб-застосунку.</p>
+        </div>
+    </div>
+</body>
+</html>

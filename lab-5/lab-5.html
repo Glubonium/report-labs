@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №5</title>
+    <link rel="stylesheet" href="lab-5.css">
+    <script src="lab-5.js" defer></script>
+</head>
+<body>
+    <div class="upper-header">
+        <div class="text-section">
+        <h3><p>ЗВІТИ ЛАБОРАТОРНИХ РОБІТ</p>
+        <p>З ДИСЦИПЛІНИ “WEB-ОРІЄНТОВАНІ ТЕХНОЛОГІЇ.</p>
+        <p>ОСНОВИ FRONTEND та BACKEND РОЗРОБОК”</p>
+        <p>Студента гр. ІО-12 Загороднього Владислава Володимировича</p></h3>
+        </div>
+        <div class="photo-section">
+            <img src="../photo_stud.jpg" alt="First Photo">
+        </div>
+    </div>
+
+    <div class="lower-header">
+        <nav id="LabsButtons">
+            <button onclick="location.href='../lab-1/lab-1.html'">Lab 1</button>
+            <button onclick="location.href='../lab-2/lab-2.html'">Lab 2</button>
+            <button onclick="location.href='../lab-3/lab-3.html'">Lab 3</button>
+            <button onclick="location.href='../lab-4/lab-4.html'">Lab 4</button>
+            <button onclick="location.href='../lab-5/lab-5.html'">Lab 5</button>
+            <button onclick="">Lab 6</button>
+            <button onclick="">Lab 7</button>
+            <button onclick="">Lab 8</button>
+            <button onclick="">Lab 9</button>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Лабораторна робота №5</h1>
+        <div class="subsection-toggle" data-subsection="subsection1">
+            <h3>Тема та постановка задачі</h3>
+        </div>
+        <div id="subsection1" class="subsection hidden">
+            <p>Тема: Розробка сортувального застосунку на JavaScript.</p>
+            <p>Постановка задачі: Реалізувати програму для сортування масивів з пошуком найменшого спільного елемента та виведенням результатів.</p>
+        </div>
+        <div class="subsection-toggle" data-subsection="subsection2">
+            <h3>Результати виконання</h3>
+        </div>
+        <div id="subsection2" class="subsection hidden">
+            <h4>Сортувальний застосунок</h4>
+            <img src="./assets/sort-app-main.png" alt="Скріншот сортувального застосунку">
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Сортування масиву&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Сортування масиву&lt;/h1&gt;
+        &lt;div class="input-container"&gt;
+            &lt;label for="array-size"&gt;Введіть розмір масивів:&lt;/label&gt;
+            &lt;input type="number" id="array-size" placeholder="Розмір масивів"&gt;
+            &lt;button id="generate-arrays"&gt;Згенерувати та відсортувати масиви&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div id="results" class="hidden"&gt;
+            &lt;h2&gt;Результати&lt;/h2&gt;
+            &lt;p id="input-arrays"&gt;&lt;/p&gt;
+            &lt;p id="sorted-array1"&gt;&lt;/p&gt;
+            &lt;p id="sorted-array2"&gt;&lt;/p&gt;
+            &lt;p id="smallest-matching"&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+            <img src="./assets/sort-app-results.png" alt="Скріншот результатів сортування">
+            <pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-container, #results {
+    margin: 20px 0;
+}
+
+label, input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+            </code></pre>
+            <pre><code>document.addEventListener('DOMContentLoaded', () => {
+    const generateArraysBtn = document.getElementById('generate-arrays');
+    const arraySizeInput = document.getElementById('array-size');
+    const resultsContainer = document.getElementById('results');
+    const inputArraysP = document.getElementById('input-arrays');
+    const sortedArray1P = document.getElementById('sorted-array1');
+    const sortedArray2P = document.getElementById('sorted-array2');
+    const smallestMatchingP = document.getElementById('smallest-matching');
+
+    generateArraysBtn.addEventListener('click', () => {
+        const size = parseInt(arraySizeInput.value);
+        if (isNaN(size) || size <= 0) {
+            alert('Будь ласка, введіть дійсний розмір масивів.');
+            return;
+        }
+
+        const array1 = generateRandomArray(size);
+        const array2 = generateRandomArray(size);
+
+        const matchingElements = array1.filter(value => array2.includes(value));
+        const smallestMatching = matchingElements.length > 0 ? Math.min(...matchingElements) : 'Немає збігів';
+
+        bubbleSort(array1);
+        bubbleSort(array2);
+
+        inputArraysP.textContent = `Вхідні масиви: [${array1.join(', ')}], [${array2.join(', ')}]`;
+        sortedArray1P.textContent = `Відсортований перший масив: [${array1.join(', ')}]`;
+        sortedArray2P.textContent = `Відсортований другий масив: [${array2.join(', ')}]`;
+        smallestMatchingP.textContent = `Найменший збіг: ${smallestMatching}`;
+
+        resultsContainer.classList.remove('hidden');
+    });
+
+    function generateRandomArray(size) {
+        const array = [];
+        for (let i = 0; i < size; i++) {
+            array.push(Math.floor(Math.random() * 100)); // Генерація випадкових чисел від 0 до 99
+        }
+        return array;
+    }
+
+    function bubbleSort(arr) {
+        const n = arr.length;
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = 0; n - i - 1 > j; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    const temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+});
+            </code></pre>
+<!--______________________________-->
+            <div class="subsection-toggle" data-subsection="subsection1">
+                <h3>Тема та постановка задачі</h3>
+            </div>
+            <div id="subsection3" class="subsection hidden">
+                <p>Тема: Розробка будильника на JavaScript.</p>
+                <p>Постановка задачі: Реалізувати програму будильник з можливістю встановлення і вимкнення будильника, а також відображення повідомлення при досягненні заданого часу.</p>
+            </div>
+            <div class="subsection-toggle" data-subsection="subsection2">
+                <h3>Результати виконання</h3>
+            </div>
+            <div id="subsection4" class="subsection hidden">
+                <h4>Будильник</h4>
+                <img src="./assets/alarm-main.png" alt="Скріншот будильника">
+                <pre><code>&lt;!DOCTYPE html&gt;
+    &lt;html lang="uk"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Будильник&lt;/title&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Будильник&lt;/h1&gt;
+            &lt;div class="input-container"&gt;
+                &lt;label for="alarm-date"&gt;Дата будильника:&lt;/label&gt;
+                &lt;input type="date" id="alarm-date"&gt;
+                &lt;label for="alarm-time"&gt;Час будильника:&lt;/label&gt;
+                &lt;input type="time" id="alarm-time"&gt;
+                &lt;button id="set-alarm-btn"&gt;Встановити будильник&lt;/button&gt;
+                &lt;button id="clear-alarm-btn"&gt;Вимкнути будильник&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div id="alarm-message" class="hidden"&gt;
+                &lt;p&gt;Час вставати!&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script src="script.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+                </code></pre>
+                <img src="./assets/alarm-result.png" alt="Скріншот результату будильника">
+                <pre><code>body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 400px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .input-container {
+        margin: 20px 0;
+    }
+    
+    label, input, button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    #alarm-message p {
+        color: red;
+        font-size: 20px;
+        font-weight: bold;
+    }
+                </code></pre>
+                <pre><code>document.addEventListener('DOMContentLoaded', () => {
+        const setAlarmBtn = document.getElementById('set-alarm-btn');
+        const clearAlarmBtn = document.getElementById('clear-alarm-btn');
+        const alarmDateInput = document.getElementById('alarm-date');
+        const alarmTimeInput = document.getElementById('alarm-time');
+        const alarmMessage = document.getElementById('alarm-message');
+    
+        let alarmTimeout;
+    
+        // Встановлення будильника
+        setAlarmBtn.addEventListener('click', () => {
+            const alarmDate = alarmDateInput.value;
+            const alarmTime = alarmTimeInput.value;
+    
+            if (!alarmDate || !alarmTime) {
+                alert('Будь ласка, введіть дату та час будильника.');
+                return;
+            }
+    
+            const alarmDateTime = new Date(`${alarmDate}T${alarmTime}`);
+            const currentTime = new Date();
+    
+            if (alarmDateTime <= currentTime) {
+                alert('Будь ласка, введіть майбутню дату та час.');
+                return;
+            }
+    
+            const timeToAlarm = alarmDateTime - currentTime;
+    
+            alarmTimeout = setTimeout(() => {
+                alarmMessage.classList.remove('hidden');
+            }, timeToAlarm);
+    
+            alert(`Будильник встановлено на ${alarmDate} о ${alarmTime}.`);
+        });
+    
+        // Вимкнення будильника
+        clearAlarmBtn.addEventListener('click', () => {
+            clearTimeout(alarmTimeout);
+            alarmMessage.classList.add('hidden');
+            alert('Будильник вимкнено.');
+        });
+    });
+                </code></pre>
+        </div>
+    </div>
+</body>
+</html>
