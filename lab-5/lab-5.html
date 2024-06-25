@@ -27,10 +27,10 @@
             <button onclick="location.href='../lab-3/lab-3.html'">Lab 3</button>
             <button onclick="location.href='../lab-4/lab-4.html'">Lab 4</button>
             <button onclick="location.href='../lab-5/lab-5.html'">Lab 5</button>
-            <button onclick="">Lab 6</button>
-            <button onclick="">Lab 7</button>
-            <button onclick="">Lab 8</button>
-            <button onclick="">Lab 9</button>
+            <button onclick="">-Lab 6</button>
+            <button onclick="">-Lab 7</button>
+            <button onclick="location.href='../lab-8/lab-8.html'">Lab 8</button>
+            <button onclick="location.href='../lab-9/lab-9.html'">Lab 9</button>
         </nav>
     </div>
     <div class="container">
@@ -41,6 +41,8 @@
         <div id="subsection1" class="subsection hidden">
             <p>Тема: Розробка сортувального застосунку на JavaScript.</p>
             <p>Постановка задачі: Реалізувати програму для сортування масивів з пошуком найменшого спільного елемента та виведенням результатів.</p>
+            <p>Тема: Розробка будильника на JavaScript.</p>
+            <p>Постановка задачі: Реалізувати програму будильник з можливістю встановлення і вимкнення будильника, а також відображення повідомлення при досягненні заданого часу.</p>
         </div>
         <div class="subsection-toggle" data-subsection="subsection2">
             <h3>Результати виконання</h3>
@@ -183,153 +185,143 @@ button:hover {
     }
 });
             </code></pre>
-<!--______________________________-->
-            <div class="subsection-toggle" data-subsection="subsection1">
-                <h3>Тема та постановка задачі</h3>
-            </div>
-            <div id="subsection3" class="subsection hidden">
-                <p>Тема: Розробка будильника на JavaScript.</p>
-                <p>Постановка задачі: Реалізувати програму будильник з можливістю встановлення і вимкнення будильника, а також відображення повідомлення при досягненні заданого часу.</p>
-            </div>
-            <div class="subsection-toggle" data-subsection="subsection2">
-                <h3>Результати виконання</h3>
-            </div>
-            <div id="subsection4" class="subsection hidden">
-                <h4>Будильник</h4>
-                <img src="./assets/alarm-main.png" alt="Скріншот будильника">
-                <pre><code>&lt;!DOCTYPE html&gt;
-    &lt;html lang="uk"&gt;
-    &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-        &lt;title&gt;Будильник&lt;/title&gt;
-        &lt;link rel="stylesheet" href="styles.css"&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div class="container"&gt;
-            &lt;h1&gt;Будильник&lt;/h1&gt;
-            &lt;div class="input-container"&gt;
-                &lt;label for="alarm-date"&gt;Дата будильника:&lt;/label&gt;
-                &lt;input type="date" id="alarm-date"&gt;
-                &lt;label for="alarm-time"&gt;Час будильника:&lt;/label&gt;
-                &lt;input type="time" id="alarm-time"&gt;
-                &lt;button id="set-alarm-btn"&gt;Встановити будильник&lt;/button&gt;
-                &lt;button id="clear-alarm-btn"&gt;Вимкнути будильник&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div id="alarm-message" class="hidden"&gt;
-                &lt;p&gt;Час вставати!&lt;/p&gt;
-            &lt;/div&gt;
+
+
+            <h4>Будильник</h4>
+            <img src="./assets/alarm-main.png" alt="Скріншот будильника">
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Будильник&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Будильник&lt;/h1&gt;
+        &lt;div class="input-container"&gt;
+            &lt;label for="alarm-date"&gt;Дата будильника:&lt;/label&gt;
+            &lt;input type="date" id="alarm-date"&gt;
+            &lt;label for="alarm-time"&gt;Час будильника:&lt;/label&gt;
+            &lt;input type="time" id="alarm-time"&gt;
+            &lt;button id="set-alarm-btn"&gt;Встановити будильник&lt;/button&gt;
+            &lt;button id="clear-alarm-btn"&gt;Вимкнути будильник&lt;/button&gt;
         &lt;/div&gt;
-        &lt;script src="script.js"&gt;&lt;/script&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-                </code></pre>
-                <img src="./assets/alarm-result.png" alt="Скріншот результату будильника">
-                <pre><code>body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        flex-direction: column;
-        padding: 20px;
-    }
-    
-    .container {
-        width: 90%;
-        max-width: 400px;
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    
-    h1 {
-        color: #333;
-        margin-bottom: 20px;
-    }
-    
-    .input-container {
-        margin: 20px 0;
-    }
-    
-    label, input, button {
-        display: block;
-        margin: 10px auto;
-        padding: 10px;
-        font-size: 16px;
-    }
-    
-    button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    button:hover {
-        background-color: #0056b3;
-    }
-    
-    .hidden {
-        display: none;
-    }
-    
-    #alarm-message p {
-        color: red;
-        font-size: 20px;
-        font-weight: bold;
-    }
-                </code></pre>
-                <pre><code>document.addEventListener('DOMContentLoaded', () => {
-        const setAlarmBtn = document.getElementById('set-alarm-btn');
-        const clearAlarmBtn = document.getElementById('clear-alarm-btn');
-        const alarmDateInput = document.getElementById('alarm-date');
-        const alarmTimeInput = document.getElementById('alarm-time');
-        const alarmMessage = document.getElementById('alarm-message');
-    
-        let alarmTimeout;
-    
-        // Встановлення будильника
-        setAlarmBtn.addEventListener('click', () => {
-            const alarmDate = alarmDateInput.value;
-            const alarmTime = alarmTimeInput.value;
-    
-            if (!alarmDate || !alarmTime) {
-                alert('Будь ласка, введіть дату та час будильника.');
-                return;
-            }
-    
-            const alarmDateTime = new Date(`${alarmDate}T${alarmTime}`);
-            const currentTime = new Date();
-    
-            if (alarmDateTime <= currentTime) {
-                alert('Будь ласка, введіть майбутню дату та час.');
-                return;
-            }
-    
-            const timeToAlarm = alarmDateTime - currentTime;
-    
-            alarmTimeout = setTimeout(() => {
-                alarmMessage.classList.remove('hidden');
-            }, timeToAlarm);
-    
-            alert(`Будильник встановлено на ${alarmDate} о ${alarmTime}.`);
-        });
-    
-        // Вимкнення будильника
-        clearAlarmBtn.addEventListener('click', () => {
-            clearTimeout(alarmTimeout);
-            alarmMessage.classList.add('hidden');
-            alert('Будильник вимкнено.');
-        });
+        &lt;div id="alarm-message" class="hidden"&gt;
+            &lt;p&gt;Час вставати!&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+            <img src="./assets/alarm-result.png" alt="Скріншот результату будильника">
+            <pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    margin: 20px 0;
+}
+
+label, input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+#alarm-message p {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+            </code></pre>
+            <pre><code>document.addEventListener('DOMContentLoaded', () => {
+    const setAlarmBtn = document.getElementById('set-alarm-btn');
+    const clearAlarmBtn = document.getElementById('clear-alarm-btn');
+    const alarmDateInput = document.getElementById('alarm-date');
+    const alarmTimeInput = document.getElementById('alarm-time');
+    const alarmMessage = document.getElementById('alarm-message');
+
+    let alarmTimeout;
+
+    // Встановлення будильника
+    setAlarmBtn.addEventListener('click', () => {
+        const alarmDate = alarmDateInput.value;
+        const alarmTime = alarmTimeInput.value;
+
+        if (!alarmDate || !alarmTime) {
+            alert('Будь ласка, введіть дату та час будильника.');
+            return;
+        }
+
+        const alarmDateTime = new Date(`${alarmDate}T${alarmTime}`);
+        const currentTime = new Date();
+
+        if (alarmDateTime <= currentTime) {
+            alert('Будь ласка, введіть майбутню дату та час.');
+            return;
+        }
+
+        const timeToAlarm = alarmDateTime - currentTime;
+
+        alarmTimeout = setTimeout(() => {
+            alarmMessage.classList.remove('hidden');
+        }, timeToAlarm);
+
+        alert(`Будильник встановлено на ${alarmDate} о ${alarmTime}.`);
     });
-                </code></pre>
+
+    // Вимкнення будильника
+    clearAlarmBtn.addEventListener('click', () => {
+        clearTimeout(alarmTimeout);
+        alarmMessage.classList.add('hidden');
+        alert('Будильник вимкнено.');
+    });
+});
+            </code></pre>
         </div>
     </div>
 </body>
